@@ -1,7 +1,10 @@
+using System.ComponentModel.DataAnnotations;
+
 namespace TryConnect.Models
 {
     public class Student
     {
+        [Key]
         public int StudentId { get; set; }
         public string? Name { get; set; }
         public string? Password { get; set; }

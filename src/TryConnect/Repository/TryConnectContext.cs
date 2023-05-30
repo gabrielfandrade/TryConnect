@@ -9,6 +9,8 @@ namespace TryConnect.Repository
         {
         }
         public DbSet<Student> Students { get; set; }
+        public DbSet<Post> Posts { get; set; }
+        public DbSet<PostComment> Comments { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -22,13 +24,6 @@ namespace TryConnect.Repository
                     TrustServerCertificate=True;
                 ");
             }
-        }
-
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<Student>().HasKey(student => student.StudentId);
-
-            base.OnModelCreating(modelBuilder);
         }
     }
 }
