@@ -25,5 +25,17 @@ namespace TryConnect.Repository
                 ");
             }
         }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Student>().Ignore(student => student.Posts);
+            modelBuilder.Entity<Student>().Ignore(student => student.Comments);
+            modelBuilder.Entity<Post>().Ignore(post => post.Student);
+            modelBuilder.Entity<Post>().Ignore(post => post.Comments);
+            modelBuilder.Entity<PostComment>().Ignore(postComment => postComment.Student);
+            modelBuilder.Entity<PostComment>().Ignore(postComment => postComment.Post);
+
+            base.OnModelCreating(modelBuilder);
+        }
     }
 }
