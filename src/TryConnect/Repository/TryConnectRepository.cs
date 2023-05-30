@@ -19,7 +19,10 @@ namespace TryConnect.Repository
 
         public void DeleteStudent(Student student)
         {
-            _context.Students.Remove(student);
+            var entity = _context.Students.First(s => s.StudentId == student.StudentId);
+
+            _context.Students.Remove(entity);
+
             _context.SaveChanges();
         }
 
@@ -35,7 +38,12 @@ namespace TryConnect.Repository
 
         public void UpdateStudent(Student student)
         {
-            _context.Students.Update(student);
+            var entity = _context.Students.First(s => s.StudentId == student.StudentId);
+
+            entity.Name = student.Name;
+            entity.Birthday = student.Birthday;
+            entity.Privacy = student.Privacy;
+
             _context.SaveChanges();
         }
     }
