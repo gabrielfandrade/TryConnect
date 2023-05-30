@@ -42,13 +42,13 @@ namespace TryConnect.Controllers
 
             _repository.CreateStudent(student);
 
-            return CreatedAtAction("Get", new { id = student.Id }, student);
+            return CreatedAtAction("Get", new { id = student.StudentId }, student);
         }
 
         [HttpPut("{id}")]
         public IActionResult Put(int id, [FromBody] Student student)
         {
-            if (student == null || student.Id != id)
+            if (student == null || student.StudentId != id)
             {
                 return BadRequest();
             }
