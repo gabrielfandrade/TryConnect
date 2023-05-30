@@ -10,9 +10,9 @@ namespace TryConnect.Models
         public string? Comment { get; set;}
         [ForeignKey("StudentId")]
         public int StudentId { get; set; }
-        public virtual Student Student { get; set; }
+        public virtual Student? Student { get; set; }
         [ForeignKey("PostId")]
         public int PostId { get; set; }
-        public virtual Post Post { get; set; }
+        public virtual Post? Post { get; set; }
     }
 }

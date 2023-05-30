@@ -13,7 +13,7 @@ namespace TryConnect.Models
         public string? Message { get; set; }
         [ForeignKey("StudentId")]
         public int StudentId { get; set; }
-        public virtual Student Student { get; set; }
-        public ICollection<PostComment> Comments { get; set; }
+        public virtual Student? Student { get; set; }
+        public ICollection<PostComment>? Comments { get; set; }
     }
 }
