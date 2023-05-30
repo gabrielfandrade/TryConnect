@@ -11,6 +11,12 @@ namespace TryConnect.Repository
             _context = context;
         }
 
+        public void CreateComment(PostComment comment)
+        {
+            _context.Comments.Add(comment);
+            _context.SaveChanges();
+        }
+
         public void CreatePost(Post post)
         {
             _context.Posts.Add(post);
@@ -20,6 +26,15 @@ namespace TryConnect.Repository
         public void CreateStudent(Student student)
         {
             _context.Students.Add(student);
+            _context.SaveChanges();
+        }
+
+        public void DeleteComment(PostComment comment)
+        {
+            var entity = _context.Comments.First(c => c.PostCommentId == comment.PostCommentId);
+
+            _context.Comments.Remove(entity);
+
             _context.SaveChanges();
         }
 
@@ -39,6 +54,11 @@ namespace TryConnect.Repository
             _context.Students.Remove(entity);
 
             _context.SaveChanges();
+        }
+
+        public IEnumerable<PostComment>? GetCommentsByPostId(int id)
+        {
+            return _context.Comments.Where(p => p.PostId == id).ToList();
         }
 
         public Post? GetPostById(int id)
@@ -64,6 +84,15 @@ namespace TryConnect.Repository
         public IEnumerable<Student>? GetStudents()
         {
             return _context.Students;
+        }
+
+        public void UpdateComment(PostComment comment)
+        {
+            var entity = _context.Comments.First(c => c.PostCommentId == comment.PostCommentId);
+
+            entity.Comment = comment.Comment;
+
+            _context.SaveChanges();
         }
 
         public void UpdatePost(Post post)

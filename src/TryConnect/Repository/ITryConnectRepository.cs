@@ -15,5 +15,9 @@ namespace TryConnect.Repository
         IEnumerable<Post>? GetPosts();
         void UpdatePost(Post post);
         void DeletePost(Post post);
+        void CreateComment(PostComment comment);
+        IEnumerable<PostComment>? GetCommentsByPostId(int id);
+        void UpdateComment(PostComment comment);
+        void DeleteComment(PostComment comment);
     }
 }
