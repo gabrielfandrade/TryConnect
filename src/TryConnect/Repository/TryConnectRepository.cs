@@ -56,6 +56,11 @@ namespace TryConnect.Repository
             _context.SaveChanges();
         }
 
+        public PostComment? GetCommenById(int id)
+        {
+            return _context.Comments.Find(id);
+        }
+
         public IEnumerable<PostComment>? GetCommentsByPostId(int id)
         {
             return _context.Comments.Where(p => p.PostId == id).ToList();
