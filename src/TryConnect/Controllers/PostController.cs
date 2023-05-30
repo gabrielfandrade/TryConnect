@@ -32,16 +32,16 @@ namespace TryConnect.Controllers
             return Ok(post);
         }
 
-        [HttpGet]
-        public IActionResult Get([FromBody] Student student)
-        {
-            var posts = _repository.GetPostsByStudentId(student.StudentId);
-            if (posts == null || !posts.Any())
-            {
-                return NotFound();
-            }
-            return Ok(posts);
-        }
+        // [HttpGet]
+        // public IActionResult Get([FromBody] Student student)
+        // {
+        //     var posts = _repository.GetPostsByStudentId(student.StudentId);
+        //     if (posts == null || !posts.Any())
+        //     {
+        //         return NotFound();
+        //     }
+        //     return Ok(posts);
+        // }
 
         [HttpPost]
         public IActionResult Post([FromBody] Post post)
