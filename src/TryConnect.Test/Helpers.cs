@@ -23,7 +23,7 @@ namespace TryConnect.Test
         public static List<Student> GetStudentsListForTests() =>
             new() {
                 new Student{
-                    Id = 1,
+                    StudentId = 1,
                     Name = "Gabriel",
                     Password = "123limao",
                     Email = "gabriel@mail.com",
@@ -31,7 +31,7 @@ namespace TryConnect.Test
                     Privacy = Privacy.Normal,
                 },
                 new Student{
-                    Id = 2,
+                    StudentId = 2,
                     Name = "Faustino",
                     Password = "123uva",
                     Email = "faustino@mail.com",
@@ -39,7 +39,7 @@ namespace TryConnect.Test
                     Privacy = Privacy.Private,
                 },
                 new Student{
-                    Id = 3,
+                    StudentId = 3,
                     Name = "Andrade",
                     Password = "123laranja",
                     Email = "andrade@mail.com",
