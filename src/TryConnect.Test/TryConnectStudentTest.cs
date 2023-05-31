@@ -2,6 +2,7 @@ using TryConnect.Models;
 using System.Globalization;
 using Newtonsoft.Json;
 using System.Text;
+using System.Net.Http.Headers;
 
 namespace TryConnect.Test;
 
@@ -12,6 +13,7 @@ public class TryConnectStudentTest : IClassFixture<TryConnectTestContext<Program
      public TryConnectStudentTest(TryConnectTestContext<Program> factory)
     {
         _client = factory.CreateClient();
+        _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Helpers.GetTokenForTests());
     }
 
     [Theory(DisplayName = "GET /student Deve retornar uma lista de estudantes")]
