@@ -31,6 +31,12 @@ public class TryConnectTestContext<TEntryPoint> : WebApplicationFactory<Program>
                     appContext.Students.AddRange(
                         Helpers.GetStudentsListForTests()
                     );
+                    appContext.Posts.AddRange(
+                        Helpers.GetPostsListForTests()
+                    );
+                    appContext.Comments.AddRange(
+                        Helpers.GetPostCommentsListForTests()
+                    );
                     appContext.SaveChanges();
                 }
                 catch (Exception e)

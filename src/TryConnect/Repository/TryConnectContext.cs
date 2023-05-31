@@ -9,6 +9,8 @@ namespace TryConnect.Repository
         {
         }
         public DbSet<Student> Students { get; set; }
+        public DbSet<Post> Posts { get; set; }
+        public DbSet<PostComment> Comments { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -26,7 +28,12 @@ namespace TryConnect.Repository
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Student>().HasKey(student => student.StudentId);
+            modelBuilder.Entity<Student>().Ignore(student => student.Posts);
+            modelBuilder.Entity<Student>().Ignore(student => student.Comments);
+            modelBuilder.Entity<Post>().Ignore(post => post.Student);
+            modelBuilder.Entity<Post>().Ignore(post => post.Comments);
+            modelBuilder.Entity<PostComment>().Ignore(postComment => postComment.Student);
+            modelBuilder.Entity<PostComment>().Ignore(postComment => postComment.Post);
 
             base.OnModelCreating(modelBuilder);
         }

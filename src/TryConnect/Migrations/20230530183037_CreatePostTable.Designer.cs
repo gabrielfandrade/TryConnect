@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TryConnect.Repository;
 
@@ -11,9 +12,11 @@ using TryConnect.Repository;
 namespace TryConnect.Migrations
 {
     [DbContext(typeof(TryConnectContext))]
-    partial class TryConnectContextModelSnapshot : ModelSnapshot
+    [Migration("20230530183037_CreatePostTable")]
+    partial class CreatePostTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

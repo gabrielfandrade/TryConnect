@@ -16,6 +16,12 @@ namespace TryConnect.Test
             context.Students.AddRange(
                 GetStudentsListForTests()
             );
+            context.Posts.AddRange(
+                GetPostsListForTests()
+            );
+            context.Comments.AddRange(
+                GetPostCommentsListForTests()
+            );
             context.SaveChanges();
             return context;
         }
@@ -46,6 +52,56 @@ namespace TryConnect.Test
                     Birthday = DateTime.ParseExact("10/10/2002", "dd/MM/yyyy", CultureInfo.InvariantCulture),
                     Privacy = Privacy.Normal,
                 },
+            };
+
+        public static List<Post> GetPostsListForTests() =>
+            new() {
+                new Post{
+                    PostId = 1,
+                    CreatedAt = DateTime.ParseExact("28/05/2023", "dd/MM/yyyy", CultureInfo.InvariantCulture),
+                    UpdatedAt = DateTime.ParseExact("28/05/2023", "dd/MM/yyyy", CultureInfo.InvariantCulture),
+                    Image = "https://upload.wikimedia.org/wikipedia/commons/4/4f/Csharp_Logo.png?20180210215736",
+                    Message = "C# é o melhor",
+                    StudentId = 2,
+                },
+                new Post{
+                    PostId = 2,
+                    CreatedAt = DateTime.ParseExact("29/05/2023", "dd/MM/yyyy", CultureInfo.InvariantCulture),
+                    UpdatedAt = DateTime.ParseExact("29/05/2023", "dd/MM/yyyy", CultureInfo.InvariantCulture),
+                    Image = "https://codeopinion.com/wp-content/uploads/2017/10/Bitmap-MEDIUM_Entity-Framework-Core-Logo_2colors_Square_Boxed_RGB-300x300.png",
+                    Message = "Entity Framework é o melhor",
+                    StudentId = 3,
+                },
+                new Post{
+                    PostId = 3,
+                    CreatedAt = DateTime.ParseExact("30/05/2023", "dd/MM/yyyy", CultureInfo.InvariantCulture),
+                    UpdatedAt = DateTime.ParseExact("30/05/2023", "dd/MM/yyyy", CultureInfo.InvariantCulture),
+                    Image = "https://www.dbacorp.com.br/wp-content/uploads/2017/07/microsoft-sql-server-logo-300x163.png",
+                    Message = "SQLServer é o melhor",
+                    StudentId = 1,
+                },
+            };
+
+        public static List<PostComment> GetPostCommentsListForTests() =>
+            new() {
+                new PostComment{
+                    PostCommentId = 1,
+                    Comment = "Comentario número 1",
+                    StudentId = 3,
+                    PostId = 2,
+                },
+                new PostComment{
+                    PostCommentId = 2,
+                    Comment = "Comentario número 2",
+                    StudentId = 1,
+                    PostId = 3,
+                },
+                new PostComment{
+                    PostCommentId = 3,
+                    Comment = "Comentario número 3",
+                    StudentId = 2,
+                    PostId = 3,
+                }
             };
     }
 }
