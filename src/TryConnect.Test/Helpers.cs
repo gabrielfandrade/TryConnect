@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using TryConnect.Models;
 using TryConnect.Repository;
 using System.Globalization;
+using TryConnect.Services;
 
 namespace TryConnect.Test
 {
@@ -103,5 +104,21 @@ namespace TryConnect.Test
                     PostId = 3,
                 }
             };
+
+        public static string GetTokenForTests()
+        {
+            var student = new Student{
+                StudentId = 1,
+                Name = "Gabriel",
+                Password = "123limao",
+                Email = "gabriel@mail.com",
+                Birthday = DateTime.ParseExact("01/01/2000", "dd/MM/yyyy", CultureInfo.InvariantCulture),
+                Privacy = Privacy.Normal,
+            };
+
+            var token = new TokenGenerator().Generate(student);
+
+            return token;
+        }
     }
 }

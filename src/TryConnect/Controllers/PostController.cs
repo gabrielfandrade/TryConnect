@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using TryConnect.Models;
 using TryConnect.Repository;
@@ -16,12 +17,14 @@ namespace TryConnect.Controllers
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public IActionResult Get()
         {
             return Ok(_repository.GetPosts());
         }
 
         [HttpGet("{id}")]
+        [AllowAnonymous]
         public IActionResult Get(int id)
         {
             var post = _repository.GetPostById(id);
@@ -44,6 +47,7 @@ namespace TryConnect.Controllers
         // }
 
         [HttpPost]
+        [Authorize]
         public IActionResult Post([FromBody] Post post)
         {
             if (post == null)
@@ -57,6 +61,7 @@ namespace TryConnect.Controllers
         }
 
         [HttpPut("{id}")]
+        [Authorize]
         public IActionResult Put(int id, [FromBody] Post post)
         {
             if (post == null || post.PostId != id)
@@ -73,6 +78,7 @@ namespace TryConnect.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize]
         public IActionResult Delete(int id)
         {
             var postInDb = _repository.GetPostById(id);
