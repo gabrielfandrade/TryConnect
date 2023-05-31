@@ -4,6 +4,7 @@ using System.Text;
 using TryConnect.Models;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
+using TryConnect.Constants;
 
 namespace TryConnect.Services
 {
@@ -17,7 +18,7 @@ namespace TryConnect.Services
             {
                 Subject = AddClaims(student),
                 SigningCredentials = new SigningCredentials(
-                    new SymmetricSecurityKey(Encoding.ASCII.GetBytes("3e35d94786e36fdc4560abf7e910c3a7")),
+                    new SymmetricSecurityKey(Encoding.ASCII.GetBytes(TokenConstants.Secret)),
                     SecurityAlgorithms.HmacSha256Signature),
                 Expires = DateTime.Now.AddDays(1)
             };
