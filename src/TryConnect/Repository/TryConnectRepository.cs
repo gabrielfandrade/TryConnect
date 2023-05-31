@@ -82,14 +82,9 @@ namespace TryConnect.Repository
             return _context.Posts.Where(post => post.StudentId == id).ToList();
         }
 
-        public Student GetStudent(Student student)
-        {
+        public Student? GetStudent(Student student)
+        {   
             var entity = _context.Students.Where(s => s.Email == student.Email && s.Password == student.Password).FirstOrDefault();
-
-            if (entity == null)
-            {
-                throw new UnauthorizedAccessException();
-            }
 
             return entity;
         }

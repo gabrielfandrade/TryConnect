@@ -23,6 +23,11 @@ namespace TryConnect.Controllers
             StudentViewModel studentViewModel = new StudentViewModel();
             try
             {
+                if (student.Email == null || !student.Email.Any() || student.Password == null || !student.Password.Any())
+                {
+                    throw new Exception("Email and Password required!");
+                }
+
                 studentViewModel.student = _repository.GetStudent(student);
 
                 if (studentViewModel.student == null)
@@ -30,7 +35,7 @@ namespace TryConnect.Controllers
                     return NotFound("User not found!");
                 }
 
-                studentViewModel.Token = new TokenGenerator().Generate(student);
+                studentViewModel.Token = new TokenGenerator().Generate(studentViewModel.student);
 
                 studentViewModel.student.Password = string.Empty;
             }

@@ -20,6 +20,6 @@ namespace TryConnect.Repository
         void UpdateComment(PostComment comment);
         void DeleteComment(PostComment comment);
         PostComment? GetCommenById(int id);
-        Student GetStudent(Student student);
+        Student? GetStudent(Student student);
     }
 }
