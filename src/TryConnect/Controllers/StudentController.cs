@@ -20,7 +20,17 @@ namespace TryConnect.Controllers
         [AllowAnonymous]
         public IActionResult Get()
         {
-            return Ok(_repository.GetStudents());
+            var students = _repository.GetStudents();
+
+            if (students != null && students.Any())
+            {
+                foreach (var student in students)
+                {
+                    student.Password = string.Empty;
+                }
+            }
+
+            return Ok(students);
         }
 
         [HttpGet("{id}")]
@@ -30,8 +40,11 @@ namespace TryConnect.Controllers
             var student = _repository.GetStudentById(id);
             if (student == null)
             {
-                return NotFound();
+                return NotFound("Student not found!");
             }
+
+            student.Password = string.Empty;
+
             return Ok(student);
         }
 
@@ -41,10 +54,12 @@ namespace TryConnect.Controllers
         {
             if (student == null)
             {
-                return BadRequest();
+                return BadRequest("Need a Student!");
             }
 
             _repository.CreateStudent(student);
+
+            student.Password = String.Empty;
 
             return CreatedAtAction("Get", new { id = student.StudentId }, student);
         }
@@ -55,15 +70,15 @@ namespace TryConnect.Controllers
         {
             if (student == null || student.StudentId != id)
             {
-                return BadRequest();
+                return BadRequest("Need a Student and ID!");
             }
             var studentInDb = _repository.GetStudentById(id);
             if (studentInDb == null)
             {
-                return NotFound();
+                return NotFound("Student not found!");
             }
             _repository.UpdateStudent(student);
-            return Ok();
+            return Ok("Student updated!");
         }
 
         [HttpDelete("{id}")]
@@ -73,7 +88,7 @@ namespace TryConnect.Controllers
             var studentInDb = _repository.GetStudentById(id);
             if (studentInDb == null)
             {
-                return NotFound();
+                return NotFound("Student not found!");
             }
             _repository.DeleteStudent(studentInDb);
             return NoContent();

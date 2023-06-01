@@ -29,7 +29,7 @@ namespace TryConnect.Controllers
         {
             if (comment == null)
             {
-                return BadRequest();
+                return BadRequest("Need a Comment!");
             }
 
             _repository.CreateComment(comment);
@@ -43,15 +43,15 @@ namespace TryConnect.Controllers
         {
             if (comment == null || comment.PostCommentId != id)
             {
-                return BadRequest();
+                return BadRequest("Need a Comment and ID!");
             }
             var commentInDb = _repository.GetCommenById(id);
             if (commentInDb == null)
             {
-                return NotFound();
+                return NotFound("Comment not found!");
             }
             _repository.UpdateComment(comment);
-            return Ok();
+            return Ok("Comment updated!");
         }
 
         [HttpDelete("{id}")]
@@ -61,7 +61,7 @@ namespace TryConnect.Controllers
             var commentInDb = _repository.GetCommenById(id);
             if (commentInDb == null)
             {
-                return NotFound();
+                return NotFound("Comment not found!");
             }
             _repository.DeleteComment(commentInDb);
             return Ok();

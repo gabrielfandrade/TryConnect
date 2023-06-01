@@ -1,5 +1,6 @@
 using TryConnect.Models;
 using System.Security.Cryptography;
+using BCrypt.Net;
 
 namespace TryConnect.Repository
 {
@@ -14,18 +15,25 @@ namespace TryConnect.Repository
 
         public void CreateComment(PostComment comment)
         {
+            comment.CreatedAt = DateTime.Now;
+
             _context.Comments.Add(comment);
             _context.SaveChanges();
         }
 
         public void CreatePost(Post post)
         {
+            post.CreatedAt = DateTime.Now;
+            post.UpdatedAt = DateTime.Now;
+
             _context.Posts.Add(post);
             _context.SaveChanges();
         }
 
         public void CreateStudent(Student student)
         {
+            student.Password = BCrypt.Net.BCrypt.EnhancedHashPassword(student.Password, hashType: HashType.SHA384);
+
             _context.Students.Add(student);
             _context.SaveChanges();
         }
@@ -82,9 +90,21 @@ namespace TryConnect.Repository
             return _context.Posts.Where(post => post.StudentId == id).ToList();
         }
 
-        public Student? GetStudent(Student student)
+        public Student? GetStudent(Login login)
         {   
-            var entity = _context.Students.Where(s => s.Email == student.Email && s.Password == student.Password).FirstOrDefault();
+            var entity = _context.Students.Where(s => s.Email == login.Email).FirstOrDefault();
+
+            if (entity == null)
+            {
+                return null;
+            }
+
+            var verify = BCrypt.Net.BCrypt.EnhancedVerify(login.Password, entity.Password, hashType:HashType.SHA384);
+
+            if (!verify)
+            {
+                throw new UnauthorizedAccessException();
+            }
 
             return entity;
         }
@@ -114,7 +134,7 @@ namespace TryConnect.Repository
 
             entity.Message = post.Message;
             entity.Image = post.Image;
-            entity.UpdatedAt = post.UpdatedAt;
+            entity.UpdatedAt = DateTime.Now;
 
             _context.SaveChanges();
         }
@@ -126,6 +146,7 @@ namespace TryConnect.Repository
             entity.Name = student.Name;
             entity.Birthday = student.Birthday;
             entity.Privacy = student.Privacy;
+            entity.Password = BCrypt.Net.BCrypt.EnhancedHashPassword(student.Password, hashType: HashType.SHA384);
 
             _context.SaveChanges();
         }
