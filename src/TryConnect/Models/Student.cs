@@ -12,7 +12,7 @@ namespace TryConnect.Models
         public string Name { get; set; }
         [Required]
         [MinLength(8)]
-        [MaxLength(50)]
+        [MaxLength(100)]
         public string Password { get; set; }
         [Required]
         [MaxLength(200)]
