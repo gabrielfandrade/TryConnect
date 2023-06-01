@@ -39,7 +39,6 @@ public class TryConnectStudentTest : IClassFixture<TryConnectTestContext<Program
                 Password = "123limao",
                 Email = "gabriel@mail.com",
                 Birthday = DateTime.ParseExact("01/01/2000", "dd/MM/yyyy", CultureInfo.InvariantCulture),
-                Privacy = Privacy.Normal,
             },
             new Student{
                 StudentId = 2,
@@ -47,7 +46,6 @@ public class TryConnectStudentTest : IClassFixture<TryConnectTestContext<Program
                 Password = "123uva",
                 Email = "faustino@mail.com",
                 Birthday = DateTime.ParseExact("05/05/2001", "dd/MM/yyyy", CultureInfo.InvariantCulture),
-                Privacy = Privacy.Private,
             },
             new Student{
                 StudentId = 3,
@@ -55,7 +53,6 @@ public class TryConnectStudentTest : IClassFixture<TryConnectTestContext<Program
                 Password = "123laranja",
                 Email = "andrade@mail.com",
                 Birthday = DateTime.ParseExact("10/10/2002", "dd/MM/yyyy", CultureInfo.InvariantCulture),
-                Privacy = Privacy.Normal,
             },
         }
     };
@@ -82,7 +79,6 @@ public class TryConnectStudentTest : IClassFixture<TryConnectTestContext<Program
             Password = "123limao",
             Email = "gabriel@mail.com",
             Birthday = DateTime.ParseExact("01/01/2000", "dd/MM/yyyy", CultureInfo.InvariantCulture),
-            Privacy = Privacy.Normal,
         }
     };
 
@@ -110,7 +106,6 @@ public class TryConnectStudentTest : IClassFixture<TryConnectTestContext<Program
             Password = "123teste",
             Email = "teste@mail.com",
             Birthday = DateTime.ParseExact("01/01/2000", "dd/MM/yyyy", CultureInfo.InvariantCulture),
-            Privacy = Privacy.Normal,
             },
             new Student{
                 StudentId = 4,
@@ -118,7 +113,6 @@ public class TryConnectStudentTest : IClassFixture<TryConnectTestContext<Program
                 Password = "123teste",
                 Email = "teste@mail.com",
                 Birthday = DateTime.ParseExact("01/01/2000", "dd/MM/yyyy", CultureInfo.InvariantCulture),
-                Privacy = Privacy.Normal,
             }
         }
     };
@@ -151,7 +145,6 @@ public class TryConnectStudentTest : IClassFixture<TryConnectTestContext<Program
             Password = "123teste",
             Email = "gabriel@mail.com",
             Birthday = DateTime.ParseExact("01/01/2000", "dd/MM/yyyy", CultureInfo.InvariantCulture),
-            Privacy = Privacy.Normal,
         }
     };
 
@@ -183,7 +176,6 @@ public class TryConnectStudentTest : IClassFixture<TryConnectTestContext<Program
             Password = "123teste",
             Email = "teste@mail.com",
             Birthday = DateTime.ParseExact("01/01/2000", "dd/MM/yyyy", CultureInfo.InvariantCulture),
-            Privacy = Privacy.Normal,
         }
     };
 
@@ -214,7 +206,6 @@ public class TryConnectStudentTest : IClassFixture<TryConnectTestContext<Program
                 Password = "123uva",
                 Email = "faustino@mail.com",
                 Birthday = DateTime.ParseExact("05/05/2001", "dd/MM/yyyy", CultureInfo.InvariantCulture),
-                Privacy = Privacy.Private,
             },
             new Student{
                 StudentId = 3,
@@ -222,7 +213,6 @@ public class TryConnectStudentTest : IClassFixture<TryConnectTestContext<Program
                 Password = "123laranja",
                 Email = "andrade@mail.com",
                 Birthday = DateTime.ParseExact("10/10/2002", "dd/MM/yyyy", CultureInfo.InvariantCulture),
-                Privacy = Privacy.Normal,
             },
         }
     }

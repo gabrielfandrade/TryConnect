@@ -18,17 +18,12 @@ namespace TryConnect.Controllers
         }
 
         [HttpPost]
-        public ActionResult<StudentViewModel> Authenticate([FromBody] Student student)
+        public ActionResult<StudentViewModel> Authenticate([FromBody] Login login)
         {
             StudentViewModel studentViewModel = new StudentViewModel();
             try
             {
-                if (student.Email == null || !student.Email.Any() || student.Password == null || !student.Password.Any())
-                {
-                    throw new Exception("Email and Password required!");
-                }
-
-                studentViewModel.student = _repository.GetStudent(student);
+                studentViewModel.student = _repository.GetStudent(login);
 
                 if (studentViewModel.student == null)
                 {

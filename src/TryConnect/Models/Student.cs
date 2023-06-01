@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using Microsoft.EntityFrameworkCore;
 
 namespace TryConnect.Models
 {
@@ -6,18 +7,19 @@ namespace TryConnect.Models
     {
         [Key]
         public int StudentId { get; set; }
-        public string? Name { get; set; }
-        public string? Password { get; set; }
-        public string? Email { get; set; }
-        public DateTime Birthday { get; set; }
-        public Privacy Privacy { get; set; }
+        [Required]
+        [MaxLength(200)]
+        public string Name { get; set; }
+        [Required]
+        [MinLength(8)]
+        [MaxLength(100)]
+        public string Password { get; set; }
+        [Required]
+        [MaxLength(200)]
+        public string Email { get; set; }
+        [Precision(3)]
+        public DateTime? Birthday { get; set; }
         public ICollection<Post>? Posts { get; set; }
         public ICollection<PostComment>? Comments { get; set; }
-    }
-
-    public enum Privacy
-    {
-        Normal,
-        Private,
     }
 }

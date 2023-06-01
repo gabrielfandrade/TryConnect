@@ -35,7 +35,6 @@ namespace TryConnect.Test
                     Password = "123limao",
                     Email = "gabriel@mail.com",
                     Birthday = DateTime.ParseExact("01/01/2000", "dd/MM/yyyy", CultureInfo.InvariantCulture),
-                    Privacy = Privacy.Normal,
                 },
                 new Student{
                     StudentId = 2,
@@ -43,7 +42,6 @@ namespace TryConnect.Test
                     Password = "123uva",
                     Email = "faustino@mail.com",
                     Birthday = DateTime.ParseExact("05/05/2001", "dd/MM/yyyy", CultureInfo.InvariantCulture),
-                    Privacy = Privacy.Private,
                 },
                 new Student{
                     StudentId = 3,
@@ -51,7 +49,6 @@ namespace TryConnect.Test
                     Password = "123laranja",
                     Email = "andrade@mail.com",
                     Birthday = DateTime.ParseExact("10/10/2002", "dd/MM/yyyy", CultureInfo.InvariantCulture),
-                    Privacy = Privacy.Normal,
                 },
             };
 
@@ -113,7 +110,6 @@ namespace TryConnect.Test
                 Password = "123limao",
                 Email = "gabriel@mail.com",
                 Birthday = DateTime.ParseExact("01/01/2000", "dd/MM/yyyy", CultureInfo.InvariantCulture),
-                Privacy = Privacy.Normal,
             };
 
             var token = new TokenGenerator().Generate(student);

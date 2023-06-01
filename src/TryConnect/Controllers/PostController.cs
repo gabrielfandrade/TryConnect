@@ -30,21 +30,21 @@ namespace TryConnect.Controllers
             var post = _repository.GetPostById(id);
             if (post == null)
             {
-                return NotFound();
+                return NotFound("Post not found!");
             }
             return Ok(post);
         }
 
-        // [HttpGet]
-        // public IActionResult Get([FromBody] Student student)
-        // {
-        //     var posts = _repository.GetPostsByStudentId(student.StudentId);
-        //     if (posts == null || !posts.Any())
-        //     {
-        //         return NotFound();
-        //     }
-        //     return Ok(posts);
-        // }
+        [HttpGet]
+        public IActionResult Get([FromBody] Student student)
+        {
+            var posts = _repository.GetPostsByStudentId(student.StudentId);
+            if (posts == null || !posts.Any())
+            {
+                return NotFound("Posts not found!");
+            }
+            return Ok(posts);
+        }
 
         [HttpPost]
         [Authorize]
@@ -52,7 +52,7 @@ namespace TryConnect.Controllers
         {
             if (post == null)
             {
-                return BadRequest();
+                return BadRequest("Need a Post!");
             }
 
             _repository.CreatePost(post);
@@ -66,15 +66,15 @@ namespace TryConnect.Controllers
         {
             if (post == null || post.PostId != id)
             {
-                return BadRequest();
+                return BadRequest("Need a Post and ID!");
             }
             var postInDb = _repository.GetPostById(id);
             if (postInDb == null)
             {
-                return NotFound();
+                return NotFound("Post not found!");
             }
             _repository.UpdatePost(post);
-            return Ok();
+            return Ok("Post updated!");
         }
 
         [HttpDelete("{id}")]
@@ -84,7 +84,7 @@ namespace TryConnect.Controllers
             var postInDb = _repository.GetPostById(id);
             if (postInDb == null)
             {
-                return NotFound();
+                return NotFound("Post not found!");
             }
             _repository.DeletePost(postInDb);
             return NoContent();
