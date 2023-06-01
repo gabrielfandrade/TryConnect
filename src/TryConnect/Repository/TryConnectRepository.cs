@@ -145,7 +145,6 @@ namespace TryConnect.Repository
 
             entity.Name = student.Name;
             entity.Birthday = student.Birthday;
-            entity.Privacy = student.Privacy;
             entity.Password = BCrypt.Net.BCrypt.EnhancedHashPassword(student.Password, hashType: HashType.SHA384);
 
             _context.SaveChanges();

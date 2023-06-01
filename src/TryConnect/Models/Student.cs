@@ -19,14 +19,7 @@ namespace TryConnect.Models
         public string Email { get; set; }
         [Precision(3)]
         public DateTime? Birthday { get; set; }
-        public Privacy Privacy { get; set; }
         public ICollection<Post>? Posts { get; set; }
         public ICollection<PostComment>? Comments { get; set; }
-    }
-
-    public enum Privacy
-    {
-        Normal,
-        Private,
     }
 }
